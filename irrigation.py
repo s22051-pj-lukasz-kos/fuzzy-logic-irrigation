@@ -1,12 +1,57 @@
 """
 System logiki rozmytej do sterowania nawadnianiem ogrodu
-Autor: [Twoje imię i nazwisko]
-Installation:
-1. Download and install Python from here: https://www.python.org/downloads/
-2. Launch terminal.
-2.1. Install numpy by typing in terminal: python3 -m pip install numpy
-2.2. Install scikit-fuzzy by typing in terminal: python3 -m pip install scikit-fuzzy
+Autor: Łukasz Kos, Emilian Murawski
+
+Instalacja:
+1. Pobierz i zainstaluj Pythona z tego źródła: https://www.python.org/downloads/
+2. Uruchom terminal.
+2.1. Zainstaluj bibliotekę numpy, wpisując w terminalu: python3 -m pip install numpy
+2.2. Zainstaluj bibliotekę scikit-fuzzy, wpisując w terminalu: python3 -m pip install scikit-fuzzy
+
+Opis:
+Ten program jest systemem logiki rozmytej służącym do sterowania nawadnianiem ogrodu. System przyjmuje trzy parametry
+wejściowe: wilgotność gleby (soil moisture), temperaturę powietrza (temperature) i promieniowanie słoneczne
+(solar radiation),a następnie na podstawie tych parametrów oblicza czas nawadniania (irrigation time).
+
+Parametry wejściowe:
+- Wilgotność gleby (soil moisture): Przyjmuje wartości od 0 do 100, gdzie 0 oznacza suchą glebę, a 100 oznacza glebę bardzo mokrą.
+- Temperatura powietrza (temperature): Przyjmuje wartości od 0 do 100, gdzie 0 oznacza bardzo niską temperaturę, a 100 oznacza bardzo wysoką temperaturę.
+- Promieniowanie słoneczne (solar radiation): Przyjmuje wartości od 0 do 100, gdzie 0 oznacza brak promieniowania słonecznego, a 100 oznacza bardzo intensywne promieniowanie.
+
+Parametr wyjściowy:
+- Czas nawadniania (irrigation time): Określa czas w minutach, jaki należy przeznaczyć na nawadnianie ogrodu na podstawie analizy parametrów wejściowych.
+
+Funkcje przynależności:
+- Dla każdego z parametrów wejściowych (wilgotność gleby, temperatura powietrza, promieniowanie słoneczne) oraz
+parametru wyjściowego (czas nawadniania) zdefiniowane są funkcje przynależności, które określają, jak dane wartości
+wpływają na czas nawadniania.
+
+Reguły rozmyte:
+- Zdefiniowane są reguły rozmyte, które określają zależności między parametrami wejściowymi a parametrem wyjściowym.
+Na przykład, jeśli gleba jest sucha i temperatura jest niska, to czas nawadniania będzie długi.
+
+Użycie:
+- Aby skorzystać z tego systemu, należy ustawić wartości parametrów wejściowych
+(wilgotność gleby, temperatura, promieniowanie) za pomocą funkcji `irrigation_system.input[]`.
+- Następnie można obliczyć czas nawadniania za pomocą funkcji `irrigation_system.compute()`.
+- Wynik można odczytać za pomocą `irrigation_system.output[]` i wyświetlić go na ekranie.
+
+Przykład użycia:
+
+irrigation_system.input['soil moisture'] = 5
+irrigation_system.input['temperature'] = 15
+irrigation_system.input['solar radiation'] = 30
+irrigation_system.compute()
+print("Czas Nawadniania:", irrigation_system.output['irrigation time'], "minut")
+
+css
+
+
+Ten przykład ustawia wartości parametrów wejściowych na niską wilgotność gleby, niską temperaturę
+i niskie promieniowanie słoneczne, a następnie oblicza i wyświetla czas nawadniania.
+
 """
+
 
 import numpy as np
 import skfuzzy as fuzz
